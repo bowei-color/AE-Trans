@@ -1,0 +1,6 @@
+Evaluation indicators,Value
+Accuracy,0.9263
+Precision,0.9445
+Recall,0.9409
+F1-Score,0.9427
+AUC,0.9676
