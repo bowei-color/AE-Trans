@@ -402,10 +402,10 @@ def get_sorted_features(avg_grads, selected_features, num):
 
     
 # 主函数
-def main(epochs):
+def main(epochs, file_path_gene, file_path_methy):
     # 读取RNA和甲基化数据
-    rna_file_path = "../data/final_merged_gene_data.csv"
-    methylation_file_path = "../data/final_cpg_genes_data.csv"
+    rna_file_path = file_path_gene
+    methylation_file_path = file_path_methy
 
     rna_data = pd.read_csv(rna_file_path)
     methylation_data = pd.read_csv(methylation_file_path)
@@ -833,8 +833,10 @@ def main(epochs):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Autoencoder with Transformer")
     parser.add_argument('--epochs', type=int, default=20, help='Number of epochs for training')
+    parser.add_argument('--file_path_gene', type=str, required=True, help='Path to the gene data file')
+    parser.add_argument('--file_path_methy', type=str, required=True, help='Path to the methylation data file')
 
     args = parser.parse_args()
-    result = main(args.epochs)
+    result = main(args.epochs, args.file_path_gene, args.file_path_methy)
     print(result)
 
