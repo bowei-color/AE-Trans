@@ -269,7 +269,7 @@ class AutoencoderWithTransformer(nn.Module):
 
         # 分类器部分
         self.classifier = nn.Sequential(
-            nn.Linear(encoding_dim*2, 32),
+            nn.Linear(encoding_dim, 32),
             nn.ReLU(),
             nn.Dropout(dropout),
             nn.Linear(32, 8),
@@ -316,7 +316,7 @@ class AutoencoderWithTransformer(nn.Module):
         decoded2 = self.decoder2(transformer_decoder2)
 
         # 分类任务
-        classification_output = self.classifier(fused_encoding)
+        classification_output = self.classifier(fused_encoding_reduced)
 
         return classification_output, decoded1, decoded2
     
